@@ -14,6 +14,13 @@ app.use(express.urlencoded({extended:true , limit:"16kb"}));
 app.use(express.static("publicuse"));  
 app.use(cookieParser());
 
+// routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);        // admin-only user management
+app.use('/api/patients', patientRoutes); // reception/doctor access
+app.use('/api/labs', labRoutes);         // lab uploads
+app.use('/api/bills', billRoutes);       // billing
+
 
 
 export default app;
