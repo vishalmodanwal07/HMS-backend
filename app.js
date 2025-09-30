@@ -1,6 +1,11 @@
 import express , {Router} from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import authRouter from "./src/routes/authRoutes.js";
+import userRouter from "./src/routes/userRoutes.js";
+import patientRouter from "./src/routes/patientRoutes.js";
+import labRouter from "./src/routes/labreportRoutes.js";
+import billRouter from "./src/routes/billRoutes.js";
 
 const app = express();
 
@@ -15,11 +20,11 @@ app.use(express.static("publicuse"));
 app.use(cookieParser());
 
 // routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);        // admin-only user management
-app.use('/api/patients', patientRoutes); // reception/doctor access
-app.use('/api/labs', labRoutes);         // lab uploads
-app.use('/api/bills', billRoutes);       // billing
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', userRouter);        // admin-only user management
+app.use('/api/v1/patients', patientRouter); // reception/doctor access
+app.use('/api/v1/labs', labRouter);         // lab uploads
+app.use('/api/v1/bills', billRouter);       // billing
 
 
 
