@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { authorize } from "../middlewares/role.middleware.js";
-import { createTreatmentRecord, deleteTreatment, getTreatmentById, getTreatmentsByPatient } from "../controllers/treatment.Controller.js";
+import { createTreatmentRecord, deleteTreatment, getTreatmentById, getTreatmentsByPatient, updateTreatment } from "../controllers/treatment.Controller.js";
 
 const treatmentRouter = Router();
 
