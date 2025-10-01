@@ -12,7 +12,7 @@ const createBill = asyncHandler(async(req , res)=>{
    
   // generate unique invoice number
   const invoiceNumber = "INV-" + Date.now();
-   const bill = await Billing.create({
+   const bill = await Bill.create({
     patientId,
     invoiceNumber,
     items,
@@ -26,7 +26,7 @@ const createBill = asyncHandler(async(req , res)=>{
 
 const getBillsByPatient = asyncHandler(async(req , res)=>{
   const {id} = req.params.patientId;
-   const bills = await Billing.find(id)
+   const bills = await Bill.find(id)
     .populate("createdBy", "name email role")
     .sort({ createdDate: -1 });
     return res
@@ -36,7 +36,7 @@ const getBillsByPatient = asyncHandler(async(req , res)=>{
 
 
 const  getBillById = asyncHandler(async(req , res)=>{
-  const bill = await Billing.findById(req.params.id).populate(
+  const bill = await Bill.findById(req.params.id).populate(
     "createdBy",
     "name email role"
   );
@@ -50,7 +50,7 @@ const  getBillById = asyncHandler(async(req , res)=>{
 const updateBillStatus = asyncHandler(async(req , res)=>{
  const { paymentStatus } = req.body;
 
-  const bill = await Billing.findById(req.params.id);
+  const bill = await Bill.findById(req.params.id);
   if (!bill) throw new ApiError(404, "Bill not found");
 
   if (!["Pending", "Paid", "Partial"].includes(paymentStatus)) {
@@ -65,7 +65,7 @@ const updateBillStatus = asyncHandler(async(req , res)=>{
 });
 
 const   deleteBill = asyncHandler(async(req , res)=>{
- const bill = await Billing.findById(req.params.id);
+ const bill = await Bill.findById(req.params.id);
   if (!bill) throw new ApiError(404, "Bill not found");
 
   await bill.deleteOne();
