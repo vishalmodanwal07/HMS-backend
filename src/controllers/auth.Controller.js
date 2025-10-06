@@ -81,7 +81,7 @@ return res
 )
 });
 const logout = asyncHandler(async(req , res)=>{
-    const {id} = req.user._id;
+    const id = req.user._id;
    await User.findByIdAndUpdate(
       id,
       {
