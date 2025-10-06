@@ -41,7 +41,7 @@ const updateUser = asyncHandler(async(req , res)=>{
 
 const deleteUser = asyncHandler(async(req , res)=>{
   const {id} = req.params.id;
-  const user = await User.findByIdAndDelete(req.params.id);
+  const user = await User.findByIdAndDelete(id);
   if (!user) throw new ApiError(404, "User not found");
   return res
   .status(200)
