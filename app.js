@@ -10,6 +10,7 @@ import treatmentRouter from "./src/routes/treatementRoutes.js";
 
 const app = express();
 
+
 //app configrations--> all configration is basically use() method   app.use()
 app.use(cors({
       origin: process.env.CORS_ORIGIN,
