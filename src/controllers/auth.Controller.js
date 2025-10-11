@@ -50,7 +50,7 @@ const login = asyncHandler(async(req , res)=>{
  if(!email){
    throw new ApiError(400 , "username or email are required");
 }
-const user =await User.findById({email});
+const user =await User.findOne({email});
  if(!user){
    throw new ApiError(404 , "user doesnot exist");
  }
